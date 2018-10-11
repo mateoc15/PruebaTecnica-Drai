@@ -24,7 +24,7 @@ $ mvn clean package && mvn spring-boot:run
 Ahora vamos al directorio App de la raiz y ejecutamos las siguientes lineas en la terminal:
  ```sh
 $ npm install
-$ npm start
+$ ng serve
 ```
    [Oracle]: <https://www.oracle.com/technetwork/database/database-technologies/express-edition/downloads/index.html>
    [Instalar Maven]: <https://www.mkyong.com/maven/how-to-install-maven-in-windows/>
@@ -33,4 +33,5 @@ $ npm start
 
 ### Anexos
 - La base de datos tiene el siguiente esquema
--
+![enter image description here](https://raw.githubusercontent.com/mateoc15/PruebaTecnica-Drai/master/img/1.png)
+- los scripts se pueden encontrar en el directorio del backend
