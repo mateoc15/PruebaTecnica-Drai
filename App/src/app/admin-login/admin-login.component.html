@@ -1,0 +1,87 @@
+<mat-toolbar color="accent">
+    <span>Encuesta</span>
+    <span class="demo-toolbar"></span>
+    <button mat-button> <a routerLink="/form">Diligenciar Encuesta  </a></button>
+    <button mat-button> <a routerLink="/login">Análisis de resultados</a></button>
+</mat-toolbar>
+
+<mat-card>
+    <mat-card-title>
+        INGRESO ADMINISTRATIVO
+    </mat-card-title>
+
+    <mat-card-content *ngIf="!isLoggedIn">
+        <form [formGroup]="formLogin" (submit)="login()">
+            <table>
+
+                <tr>
+                    <br>
+                    <mat-form-field class="demo-full-width">
+                        <input matInput type="text" placeholder="Usuario:" formControlName="usuario">
+                    </mat-form-field>
+
+                </tr>
+                <tr>
+                    <br>
+                    <mat-form-field class="demo-full-width">
+                        <input matInput type="password" placeholder="Contraseña:" formControlName="contrasena">
+                    </mat-form-field>
+                </tr>
+
+                <tr>
+                    <button mat-raised-button type="submit" color="accent">Ingresar</button>
+                </tr>
+            </table>
+        </form>
+    </mat-card-content>
+
+    <mat-card-content *ngIf="isLoggedIn">
+        <h1>Resultados:</h1>
+        <br>
+        <h3>Número de encuestas: {{ numeroEncuestas }}</h3>
+        <h3>Número de personas entre 20 y 30 años que prefieren Gaseosa: {{ numeroPersonasGaseosa }}</h3>
+
+
+        <h3>Bebida o bebidas preferidas por los estudiantes</h3>
+        <tr *ngFor="let bebidaPref of bebidaPreferida">
+            <td>Bebida: {{ bebidaPref[0] }} </td>
+            <td>Con: {{ bebidaPref[1] }} registros</td>
+        </tr>
+        <br>
+        <h3>Programa o programas con menos participación</h3>
+        <tr *ngFor="let lessPart of menosParticipacion">
+            <td>Programa: {{ lessPart[1] }} </td>
+            <td>N° de personas: {{ lessPart[2] }}</td>
+        </tr>
+        <br>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+            <ng-container matColumnDef="bebidaPref">
+                <th mat-header-cell *matHeaderCellDef> Bebida Preferida </th>
+                <td mat-cell *matCellDef="let encuesta"> {{encuesta.bebidaPref}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="edad">
+                <th mat-header-cell *matHeaderCellDef> Edad </th>
+                <td mat-cell *matCellDef="let encuesta"> {{encuesta.edad}} </td>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="genero">
+                <th mat-header-cell *matHeaderCellDef> Genero </th>
+                <td mat-cell *matCellDef="let encuesta"> {{encuesta.genero}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="programa.nombreProg">
+                <th mat-header-cell *matHeaderCellDef> Programa </th>
+                <td mat-cell *matCellDef="let encuesta"> {{encuesta.programa.nombreProg}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
+</mat-card>

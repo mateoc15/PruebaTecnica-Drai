@@ -1,0 +1,59 @@
+<mat-toolbar color="accent">
+    <span>Encuesta</span>
+    <span class="demo-toolbar"></span>
+    <button mat-button> <a routerLink="/form">Diligenciar Encuesta  </a></button>
+    <button mat-button> <a routerLink="/login">  Análisis de resultados</a></button>
+</mat-toolbar>
+
+<mat-card>
+    <mat-card-title>
+        Encuesta Hábitos de consumode bebidas
+    </mat-card-title>
+
+    <mat-card-content>
+        <form [formGroup]="formEncuesta" (submit)="limiteEncuestas()">
+            <table>
+                <tr>
+                    <mat-form-field class="demo-full-width">
+                        <mat-select placeholder="Bebida preferida" [(value)]="bebidaSeleccionada" formControlName="bebidaPref">
+                            <mat-option>Seleccione</mat-option>
+                            <mat-option value="gaseosa">Gaseosa</mat-option>
+                            <mat-option value="Jugo natural">Jugo natural</mat-option>
+                            <mat-option value="Agua de panela">Agua de panela</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </tr>
+
+
+                <tr>
+                    <span>Género</span><br><br>
+                    <mat-radio-group formControlName="genero">
+                        <mat-radio-button value="Masculino">Masculino</mat-radio-button>
+                        <mat-radio-button value="Femenino">Femenino</mat-radio-button>
+                    </mat-radio-group>
+                </tr>
+                <tr>
+                    <br>
+                    <mat-form-field class="demo-full-width">
+                        <input matInput type="number" placeholder="Edad" formControlName="edad">
+                    </mat-form-field>
+
+                </tr>
+                <tr>
+                    <mat-form-field class="demo-full-width">
+                        <mat-select placeholder="Programa académico" [(value)]="programaSeleccionado" formControlName="programa">
+                            <mat-option>Seleccione</mat-option>
+                            <mat-option value="1">Ingeniería de Telecomunicaciones</mat-option>
+                            <mat-option value="2">Ingeniería de Sistemas</mat-option>
+                            <mat-option value="3">Ingeniería Industrial</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </tr>
+
+                <tr>
+                    <button mat-raised-button type="submit" color="accent">Enviar</button>
+                </tr>
+            </table>
+        </form>
+    </mat-card-content>
+</mat-card>
